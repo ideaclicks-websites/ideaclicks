@@ -1,0 +1,433 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Our Blogs | IdeaClicks<sup>®</sup></title>
+
+  <!-- keep your existing CSS links if needed -->
+  <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
+  <link rel="stylesheet" href="assets/theme/css/style.css">
+  <link rel="stylesheet" href="assets/mobirise/css/mbr-additional.css">
+  <link rel="stylesheet" href="assets/web/assets/mobirise-icons2/mobirise2.css">
+  <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
+  <link rel="stylesheet" href="assets/bootstrap/css/bootstrap-grid.min.css">
+  <link rel="stylesheet" href="assets/bootstrap/css/bootstrap-reboot.min.css">
+  <link rel="stylesheet" href="assets/dropdown/css/style.css">
+  <link rel="stylesheet" href="assets/socicon/css/styles.css">
+  <link rel="stylesheet" href="assets/theme/css/style.css">
+  <link rel="preload" href="https://fonts.googleapis.com/css?family=Jost:100,200,300,400,500,600,700,800,900,100i,200i,300i,400i,500i,600i,700i,800i,900i&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Jost:100,200,300,400,500,600,700,800,900,100i,200i,300i,400i,500i,600i,700i,800i,900i&display=swap"></noscript>
+  <link rel="preload" as="style" href="assets/mobirise/css/mbr-additional.css?v=EosuYd"><link rel="stylesheet" href="assets/mobirise/css/mbr-additional.css?v=EosuYd" type="text/css">
+  <link rel="preconnect" href="https://docs.google.com">
+  <link rel="dns-prefetch" href="https://docs.google.com">
+
+
+  <style>
+    /* Small blog list styles */
+   .blogs-section {padding: 100px 20px 90px;   /* top right/left bottom */}
+    .blog-card { border-radius: 12px; overflow: hidden; background: #fff; box-shadow: 0 6px 18px rgba(0,0,0,0.06); transition: transform .25s; }
+    .blog-card:hover { transform: translateY(-6px); }
+    .blog-img { width:100%; height:200px; object-fit:cover; display:block; }
+    .blog-body { padding:16px; }
+    .blog-title { font-size:1.15rem; margin:0 0 8px; color:#045879; font-weight:600; }
+    .blog-excerpt { color:#555; font-size:0.95rem; }
+    .read-more { color:#045879; font-weight:700; text-decoration:none; display:inline-block; margin-top:12px; }
+    .read-more:hover { text-decoration:underline; }
+    /* Force equal height cards */
+#blogsGrid {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+#blogsGrid .col-md-4 {
+  display: flex;
+}
+
+/* Make each card full height */
+.blog-card {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+/* Make blog body stretch */
+.blog-body {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Keep Read More button at bottom */
+.blog-excerpt {
+  flex-grow: 1;
+}
+
+/* Fixed image height (already set but reinforced) */
+.blog-img {
+  height: 220px;
+  object-fit: cover;
+}
+
+/* Skeleton Cards  */
+.skeleton-card {
+  height: 340px;
+  border-radius: 12px;
+  background: linear-gradient(90deg, #f0f0f0 25%, #e2e2e2 37%, #f0f0f0 63%);
+  background-size: 400% 100%;
+  animation: skeleton-loading 1.4s infinite ease;
+}
+
+@keyframes skeleton-loading {
+  0% { background-position: 100% 0; }
+  100% { background-position: -100% 0; }
+}
+
+/* Skeleton Cards Ends   */
+
+  </style>
+</head>
+<body>
+
+  <!-- Page Preloader with Dynamic Quotes -->
+<div id="preloader">
+  <div class="loader-content">
+    <img src="assets/images/ideaclicks20logo-256x256.png" class="loader-logo" alt="IdeaClicks Logo">
+    <p class="loader-quote" id="pageQuote"></p>
+  </div>
+</div>
+  <!-- copy your site's header here for consistent look (optional) -->
+    <section data-bs-version="5.1" class="menu menu2 cid-sFCw1qGFAI" once="menu" id="menu2-23">
+    
+    <nav class="navbar navbar-dropdown navbar-expand-lg">
+        <div class="container">
+            <div class="navbar-brand">
+                
+                <span class="navbar-caption-wrap"><a class="navbar-caption text-black text-primary display-5" href="index.html#home">IdeaClicks<span class="r-mark">®</span></a></span>
+            </div>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-bs-toggle="collapse" data-target="#navbarSupportedContent" data-bs-target="#navbarSupportedContent" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                <div class="hamburger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav nav-dropdown" data-app-modern-menu="true"><li class="nav-item"><a class="nav-link link text-black text-primary display-7" href="index.html#home">Home</a></li><li class="nav-item dropdown"><a class="nav-link link text-black text-primary dropdown-toggle display-7" href="index.html#features1-1i" data-toggle="dropdown-submenu" data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-expanded="false">Services</a><div class="dropdown-menu" aria-labelledby="dropdown-327"><a class="text-black text-primary dropdown-item display-7" href="services.html#gmb">Google My Business</a><a class="text-black text-primary show dropdown-item display-7" href="services.html#seo">SEO + Content</a><a class="text-black text-primary show dropdown-item display-7" href="services.html#socialmedia">Social Media Management</a><a class="text-black text-primary show dropdown-item display-7" href="services.html#webdev">Website Development</a><a class="text-black text-primary show dropdown-item display-7" href="services.html#whatsapp">Customised WhatsApp Messaging</a><a class="text-black text-primary show dropdown-item display-7" href="services.html#ads"> Paid Ads (Google, Meta)</a><a class="text-black text-primary dropdown-item display-7" href="services.html#creatives">Creatives {Images, Reels, Videos}</a><a class="text-black text-primary show dropdown-item display-7" href="services.html#appdev">App Development</a></div></li>
+                    <li class="nav-item"><a class="nav-link link text-black text-primary display-7" href="successstories.html#SuccessStories">Success Stories</a></li>
+                    <li class="nav-item"><a class="nav-link link text-black text-primary display-7" href="aboutus.html#aboutus">About Us</a>
+                    </li>
+                     <li class="nav-item"><a class="nav-link link text-black text-primary display-7" href="blogs.html">Blogs</a></li>
+                     <li class="nav-item"><a class="nav-link link text-black text-primary display-7" href="contacts.html#contacts">Contacts</a></li></ul> 
+                
+                <div class="navbar-buttons mbr-section-btn"><a class="btn btn-warning display-4" href="tel:+91 75593 18718"><span class="mobi-mbri mobi-mbri-phone mbr-iconfont mbr-iconfont-btn"></span>Call Now</a></div>
+            </div>
+        </div>
+    </nav>
+</section>
+  <!-- Example: include the same header HTML block as in index.html -->
+
+
+  <section class="blogs-section container">
+                    <h4 class="mbr-section-title mbr-fonts-style align-center mb-5 display-2"><strong>Blogs</strong></h4>
+                    <div id="blogLoader" class="row g-4">
+  <div class="col-md-4"><div class="skeleton-card"></div></div>
+  <div class="col-md-4"><div class="skeleton-card"></div></div>
+  <div class="col-md-4"><div class="skeleton-card"></div></div>
+</div>
+
+    <div id="blogsGrid" class="row g-4">
+      <!-- JS will populate blog cards here -->
+    </div>
+  </section>
+
+  <!-- copy your site's footer here for consistent look (optional) -->
+<!-- Footer Sarts  -->
+<section data-bs-version="5.1" class="footer4 cid-uNfrjFsSl5" once="footers" id="footer4-3">
+
+    
+
+    
+    
+    <div class="container">
+        <div class="row mbr-white">
+            <div class="col-6 col-lg-3">
+                <div class="media-wrap col-md-8 col-12">
+                    <a href="index.html#home">
+                        <img src="assets/images/ideaclicks20logo-256x256.png" alt="best lead generation company pune" >
+                    </a>
+                </div>
+            </div>
+            <div class="col-12 col-md-6 col-lg-3">
+                <h5 class="mbr-section-subtitle mbr-fonts-style mb-2 display-7">
+                    <strong>Services</strong></h5>
+                <p class="mbr-text mbr-fonts-style mb-4 display-4">-- GMB <br>-- SEO + Content <br>-- Social Media Management <br>-- Customized Website&nbsp;<br>-- WhatsApp Messaging&nbsp;<br>-- Paid Ads (Google, Meta) <br>-- Creatives {Images, Reels, Videos} <br>-- App Dev</p>
+                <h5 class="mbr-section-subtitle mbr-fonts-style mb-3 display-7">
+                    <strong>Follow Us</strong>
+                </h5>
+                <div class="social-row display-7">
+                    <div class="soc-item">
+                        <a href="https://www.facebook.com/IdeaClicks/" target="_blank">
+                            <span class="mbr-iconfont socicon-facebook socicon"></span>
+                        </a>
+                    </div>
+                    <div class="soc-item">
+                        <a href="https://wa.me/917559318718">
+                            <span class="mbr-iconfont socicon-whatsapp socicon"></span>
+                        </a>
+                    </div>
+                    <div class="soc-item">
+                        <a href="https://www.instagram.com/ideaclicks_/" target="_blank">
+                            <span class="mbr-iconfont socicon-instagram socicon"></span>
+                        </a>
+                    </div>
+
+                    <div class="soc-item">
+    <a href="https://www.linkedin.com/company/ideaclicks/" target="_blank">
+        <span class="mbr-iconfont socicon-linkedin socicon"></span>
+    </a>
+</div>
+
+                    
+                </div>
+            </div>
+          <div class="col-12 col-md-6 col-lg-3">
+  <h5 class="mbr-section-subtitle mbr-fonts-style mb-2 display-7">
+    <strong>Quick Links</strong>
+  </h5>
+  <ul class="list mbr-fonts-style display-7">
+    <li class="mbr-text item-wrap"><a href="index.html" class="text-primary">Home</a></li>
+    <li class="mbr-text item-wrap"><a href="services.html" class="text-primary">Services</a></li>
+    <li class="mbr-text item-wrap"><a href="successstories.html" class="text-primary">Success Stories</a></li>
+    <li class="mbr-text item-wrap"><a href="blogs.html" class="text-primary">Blogs</a></li>
+    <li class="mbr-text item-wrap"><a href="aboutus.html" class="text-primary">About</a></li>
+    <li class="mbr-text item-wrap"><a href="contacts.html" class="text-primary">Contacts</a></li>
+  </ul>
+</div>
+
+          <div class="col-12 col-md-6 col-lg-3">
+  <h5 class="mbr-section-subtitle mbr-fonts-style mb-2 display-7">
+    <strong>Contact Info</strong>
+  </h5>
+  <ul class="list mbr-fonts-style display-4">
+    <li class="mbr-text item-wrap">
+      <a href="https://www.google.com/maps?q=Wakad+Business+Bay,+Wakad,+Pune+411017" target="_blank" class="text-primary">
+        Address: 7th Floor, Wakad Business Bay, Wakad, Pune – 411017
+      </a>
+    </li>
+    <li class="mbr-text item-wrap">
+      <a href="tel:+91 75593 18718" class="text-primary">Phone No: +91 755 931 8718</a>
+    </li>
+    <li class="mbr-text item-wrap">
+      <a href="mailto:innovation@ideaclicks.in" class="text-primary">Email: innovation@ideaclicks.in</a>
+    </li>
+  </ul>
+</div>
+
+        </div>
+    </div>
+</section>
+<!-- Footer Ends  -->
+
+<!-- Credits Link Start  -->
+
+<section class="display-7" style="padding: 0;align-items: center;justify-content: center;flex-wrap: wrap;    align-content: center;display: flex;position: relative;height: 4rem;"><a href="https://ideaclicks.in/" style="flex: 1 1;height: 4rem;position: absolute;width: 100%;z-index: 1;"><img alt="" style="height: 4rem;" src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw=="></a><p style="margin: 0;text-align: center;" class="display-7">&#8204;</p><a style="z-index:1" href="https://ideaclicks.in/">Brought to Life by IdeaClicks<sup>®</sup></a></section><script src="assets/bootstrap/js/bootstrap.bundle.min.js"></script>  <script src="assets/smoothscroll/smooth-scroll.js"></script>  <script src="assets/ytplayer/index.js"></script>  <script src="assets/dropdown/js/navbar-dropdown.js"></script>  <script src="assets/theme/js/script.js"></script>  <script src="assets/formoid/formoid.min.js"></script>  
+<!-- Credit Link Ends  -->
+
+<!-- Floating buttons  -->
+  <div class="floating-buttons">
+  <a href="tel:+91 75593 18718">
+    <img src="assets/images/call.png" alt="Call Button">
+  </a>
+  <a href="https://wa.me/917559318718" target="_blank">
+    <img src="assets/images/whatsapp.png" alt="WhatsApp Button">
+  </a>
+</div>
+<!-- Floating Buttons Ends -->
+  <!-- Footer Ends  -->
+
+
+  
+<script>
+/* ====== Configuration - REPLACE with your Google Sheet ID and Sheet name ===== */
+const SHEET_ID = '1vHrj5ZudZOcZFpBs6do0nlcvTTVtu2l02-8JVwXilr4';
+const SHEET_NAME = 'Sheet1';
+/* ========================================================================== */
+
+const sheetURL = `https://docs.google.com/spreadsheets/d/${SHEET_ID}/gviz/tq?tqx=out:json&sheet=${encodeURIComponent(SHEET_NAME)}`;
+
+function parseGvizJson(text) {
+  const m = text.match(/google\.visualization\.Query\.setResponse\(([\s\S\w]+)\)/);
+  if (!m) return null;
+  return JSON.parse(m[1]);
+}
+
+/* Convert a row array + cols to a simple object with lowercase keys */
+function rowToObj(row, cols) {
+  const obj = {};
+  cols.forEach((c, i) => {
+    const key = (c.label || c.id || `col${i}`).toString().trim().toLowerCase();
+    const cell = row[i];
+    // prefer formatted text (cell.f) if available, else cell.v
+    let val = '';
+    if (cell) {
+      if (cell.f !== undefined && cell.f !== null) val = cell.f;
+      else if (cell.v !== undefined && cell.v !== null) val = cell.v;
+      else val = '';
+    }
+    obj[key] = (typeof val === 'string') ? val.trim() : val;
+  });
+  return obj;
+}
+
+/* Convert a Google Drive share link into a direct image url if needed */
+function normalizeImageUrl(url) {
+  if (!url) return '';
+  url = String(url).trim();
+  // If it's already a normal http(s) image, return as-is
+  if (url.match(/\.(png|jpe?g|gif|webp)(\?.*)?$/i) || url.startsWith('https://') && url.includes('s3.amazonaws.com')) {
+    return url;
+  }
+  // Google Drive share link pattern: /file/d/<id>/...
+  const m = url.match(/\/d\/([a-zA-Z0-9_-]+)\//);
+  if (m) {
+    return `https://drive.google.com/uc?export=view&id=${m[1]}`;
+  }
+  // Another Drive pattern: id=FILEID
+  const m2 = url.match(/id=([a-zA-Z0-9_-]+)/);
+  if (m2) {
+    return `https://drive.google.com/uc?export=view&id=${m2[1]}`;
+  }
+  // fallback: return original
+  return url;
+}
+
+function escapeHtml(text) {
+  if (text === undefined || text === null) return '';
+  return String(text).replace(/[&<>"']/g, function(m){ return ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]); });
+}
+
+async function loadAndRenderBlogs() {
+  try {
+    const res = await fetch(sheetURL);
+    const txt = await res.text();
+    const data = parseGvizJson(txt);
+    if (!data) {
+      console.error('Invalid sheet data');
+      return;
+    }
+
+    const cols = data.table.cols;
+    const rows = data.table.rows || [];
+    const posts = rows.map(r => rowToObj(r.c || [], cols));
+
+    // Normalize fields and parse date; ensure we have an id for each post (use index if missing)
+    posts.forEach((p, idx) => {
+      p.id = (p.id !== undefined && p.id !== '') ? String(p.id).trim() : String(idx + 1);
+      p.title = (p.title || '').toString();
+      p.slug = (p.slug || '').toString().trim();
+      p.image = normalizeImageUrl(p.image || '');
+      p.excerpt = (p.excerpt || '').toString();
+      p.content = (p.content || '').toString();
+      // Date handling: accept YYYY-MM-DD or formatted date from Google Sheets (cell.f)
+      let d = null;
+      if (p.date) {
+        // try direct parse
+        d = new Date(p.date);
+        if (isNaN(d.getTime())) {
+          // try extracting yyyy-mm-dd inside string
+          const mm = (p.date.match(/(\d{4}-\d{2}-\d{2})/) || [])[1];
+          if (mm) d = new Date(mm);
+        }
+      }
+      if (!d || isNaN(d.getTime())) d = new Date(0); // fallback very old date
+      p._dateObj = d;
+    });
+
+    // Sort by date descending (newest first)
+    posts.sort((a,b) => b._dateObj - a._dateObj);
+
+    // Render cards
+    document.getElementById('blogLoader').style.display = 'none';
+    const grid = document.getElementById('blogsGrid');
+    grid.innerHTML = '';
+
+    // If no posts, show message
+    if (posts.length === 0) {
+      grid.innerHTML = '<div class="col-12 text-center">No blogs found.</div>';
+      return;
+    }
+
+    posts.forEach((post, index) => {
+      // fallback image placeholder (replace with any placeholder you like)
+      const imgSrc = post.image || 'assets/images/blog-placeholder.png';
+
+      const col = document.createElement('div');
+      col.className = 'col-md-4';
+      col.innerHTML = `
+        <div class="blog-card">
+          <img class="blog-img" src="${escapeHtml(imgSrc)}" alt="${escapeHtml(post.title)}" onerror="this.onerror=null;this.src='assets/images/blog-placeholder.png'">
+          <div class="blog-body">
+            <h3 class="blog-title">${escapeHtml(post.title)}</h3>
+            <p class="blog-excerpt">${escapeHtml(post.excerpt)}</p>
+            <a class="read-more" href="blog.html?i=${index}">Read More →</a>
+          </div>
+        </div>
+      `;
+      grid.appendChild(col);
+    });
+
+    // Save posts to window so blog.html can optionally reuse via opener (not required)
+    window.__IDEACLICKS_POSTS = posts;
+
+  } catch (err) {
+    console.error('Error loading sheet', err);
+  }
+}
+
+/* run */
+loadAndRenderBlogs();
+
+
+</script>
+<script>
+const quotes = [
+  "Stopping marketing because your business is stable is like turning off oxygen because you're breathing fine.",
+  "Lead generation isn’t an expense — it’s the bridge between your potential and your profit.",
+  "A business without marketing is like a billboard in the desert — perfectly built, but unseen.",
+  "The fortune of modern businesses is not made by products alone, but by those who know how to market them.",
+  "Don’t wait for customers to find you. The smart ones make sure they are seen.",
+  "Marketing is not about shouting louder, it’s about reaching the right ears.",
+  "Every lead ignored today is revenue lost tomorrow.",
+  "Great products fail not because they aren’t useful, but because they aren’t visible.",
+  "In a digital world, silence is the most expensive marketing mistake.",
+  "Lead generation is the engine that keeps your business from running on hope.",
+  "Growth Begins With The Right Strategy.",
+];
+
+// Get current index or start at 0
+let currentIndex = localStorage.getItem("quoteIndex");
+currentIndex = currentIndex ? parseInt(currentIndex) : 0;
+
+// Show quote
+document.getElementById("pageQuote").innerText = quotes[currentIndex];
+
+// Update for next page
+currentIndex = (currentIndex + 1) % quotes.length;
+localStorage.setItem("quoteIndex", currentIndex);
+
+// Hide loader after delay
+window.addEventListener("load", function () {
+  setTimeout(() => {
+    const loader = document.getElementById("preloader");
+    loader.style.opacity = "0";
+    loader.style.transition = "opacity 0.5s ease";
+    setTimeout(() => loader.style.display = "none", 500);
+  }, 2500);
+});
+</script>
+
+
+</body>
+</html>

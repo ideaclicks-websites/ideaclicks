@@ -1,0 +1,160 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Blog | IdeaClicks<sup>®</sup></title>
+  <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
+  <link rel="stylesheet" href="assets/theme/css/style.css">
+  <link rel="stylesheet" href="assets/mobirise/css/mbr-additional.css">
+  <style>
+    .blog-hero { width:100%; height:360px; object-fit:cover; border-radius:12px; }
+    .blog-container { max-width:900px; margin:30px auto; padding:20px; background:#fff; border-radius:12px; box-shadow:0 8px 24px rgba(0,0,0,0.06); }
+    .blog-title { color:#045879; font-weight:700; }
+    .blog-date { color:#777; margin-bottom:14px; }
+    .related-list a { display:block; color:#045879; text-decoration:none; padding:6px 0; }
+  </style>
+</head>
+<body>
+  <!-- header copy here -->
+
+  <div class="blog-container">
+    <img id="postImage" class="blog-hero" src="" alt="">
+    <h1 id="postTitle" class="blog-title"></h1>
+    <p id="postDate" class="blog-date"></p>
+    <div id="postContent"></div>
+
+    <hr>
+    <h5>Other posts</h5>
+    <div id="relatedPosts" class="related-list"></div>
+  </div>
+
+  <!-- footer copy here -->
+
+<script>
+/* CONFIG - same SHEET_ID and SHEET_NAME as blogs.html */
+const SHEET_ID = '1vHrj5ZudZOcZFpBs6do0nlcvTTVtu2l02-8JVwXilr4';
+const SHEET_NAME = 'Sheet1';
+const sheetURL = `https://docs.google.com/spreadsheets/d/${SHEET_ID}/gviz/tq?tqx=out:json&sheet=${encodeURIComponent(SHEET_NAME)}`;
+
+function parseGvizJson(text) {
+  const m = text.match(/google\.visualization\.Query\.setResponse\(([\s\S\w]+)\)/);
+  if (!m) return null;
+  return JSON.parse(m[1]);
+}
+
+function rowToObj(row, cols) {
+  const obj = {};
+  cols.forEach((c, i) => {
+    const key = (c.label || c.id || `col${i}`).toString().trim().toLowerCase();
+    const cell = row[i];
+    let val = '';
+    if (cell) {
+      if (cell.f !== undefined && cell.f !== null) val = cell.f;
+      else if (cell.v !== undefined && cell.v !== null) val = cell.v;
+      else val = '';
+    }
+    obj[key] = (typeof val === 'string') ? val.trim() : val;
+  });
+  return obj;
+}
+
+function normalizeImageUrl(url) {
+  if (!url) return '';
+  url = String(url).trim();
+  const m = url.match(/\/d\/([a-zA-Z0-9_-]+)\//);
+  if (m) return `https://drive.google.com/uc?export=view&id=${m[1]}`;
+  const m2 = url.match(/id=([a-zA-Z0-9_-]+)/);
+  if (m2) return `https://drive.google.com/uc?export=view&id=${m2[1]}`;
+  return url;
+}
+
+function getQueryParam(name) {
+  const params = new URLSearchParams(window.location.search);
+  return params.get(name);
+}
+
+function escapeHtml(text) {
+  if (!text) return '';
+  return String(text).replace(/[&<>"']/g, function(m){ return ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]); });
+}
+
+async function loadPostAndRender() {
+  try {
+    const res = await fetch(sheetURL);
+    const txt = await res.text();
+    const data = parseGvizJson(txt);
+    if (!data) { console.error('Invalid sheet data'); return; }
+
+    const cols = data.table.cols;
+    const rows = data.table.rows || [];
+    const posts = rows.map(r => rowToObj(r.c || [], cols));
+
+    // normalize and parse dates
+    posts.forEach((p, idx) => {
+      p.id = (p.id !== undefined && p.id !== '') ? String(p.id).trim() : String(idx + 1);
+      p.title = (p.title || '').toString();
+      p.slug = (p.slug || '').toString().trim();
+      p.image = normalizeImageUrl(p.image || '');
+      p.content = (p.content || '').toString();
+      p.date = (p.date || '').toString();
+      let d = new Date(p.date);
+      if (isNaN(d.getTime())) {
+        const mm = (p.date.match(/(\d{4}-\d{2}-\d{2})/) || [])[1];
+        d = mm ? new Date(mm) : new Date(0);
+      }
+      p._dateObj = d;
+    });
+
+    // sort by date desc
+    posts.sort((a,b) => b._dateObj - a._dateObj);
+
+    // pick index from ?i=
+    const iParam = getQueryParam('i');
+    let index = parseInt(iParam, 10);
+    if (isNaN(index) || index < 0 || index >= posts.length) {
+      index = 0; // fallback to first (newest) post
+    }
+    const post = posts[index];
+
+    // render into DOM — make sure these IDs exist in your blog.html
+    document.getElementById('postTitle').textContent = post.title || 'Untitled';
+    document.getElementById('postDate').textContent = post.date || '';
+    const imgEl = document.getElementById('postImage');
+    if (imgEl) {
+      imgEl.src = post.image || 'assets/images/blog-placeholder.png';
+      imgEl.alt = post.title || '';
+    }
+
+    // content: if contains HTML tags, set as innerHTML, else convert newlines to paragraphs
+    const contentEl = document.getElementById('postContent');
+    if (contentEl) {
+      if (/<[a-z][\s\S]*>/i.test(post.content || '')) {
+        contentEl.innerHTML = post.content || '';
+      } else {
+        const paras = (post.content || '').split(/\n{1,}/).map(s => `<p>${escapeHtml(s)}</p>`).join('');
+        contentEl.innerHTML = paras;
+      }
+    }
+
+    // related posts
+    const relatedDiv = document.getElementById('relatedPosts');
+    if (relatedDiv) {
+      relatedDiv.innerHTML = posts
+        .filter((p, idx) => idx !== index)
+        .slice(0,5)
+        .map((r, idx2) => `<a href="blog.html?i=${idx2 >= index ? idx2+1 : idx2}">${escapeHtml(r.title)}</a>`)
+        .join('<br>');
+      // NOTE: above idx2-> mapping is simplified; related links will work best if they compute real indexes,
+      // but primary goal is to show other posts. If you prefer stable indexes, we can render using saved posts array.
+    }
+  } catch (err) {
+    console.error('Error loading post', err);
+  }
+}
+
+loadPostAndRender();
+</script>
+
+</body>
+</html>

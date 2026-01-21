@@ -181,6 +181,7 @@
     -webkit-transform: translateX(-100%); }
   .nav-dropdown-sm .nav-item {
     display: block;
+    
     margin-left: 0 !important;
     padding-left: 0; }
   .nav-dropdown-sm .link,
@@ -332,3 +333,4 @@
         transform: scale(1.05);
     }
 }
+
