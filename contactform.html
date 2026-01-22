@@ -111,7 +111,7 @@
 <script>
  function timestamp() { var response = document.getElementById("g-recaptcha-response"); if (response == null || response.value.trim() == "") {var elems = JSON.parse(document.getElementsByName("captcha_settings")[0].value);elems["ts"] = JSON.stringify(new Date().getTime());document.getElementsByName("captcha_settings")[0].value = JSON.stringify(elems); } } setInterval(timestamp, 500); 
 </script>
-    <form action="https://www.ideaclicks.in" method="POST">
+    <form action="https://webto.salesforce.com/servlet/servlet.WebToLead?encoding=UTF-8&orgId=00DdN00000rJlJF" method="POST">
 
 <input type=hidden name='captcha_settings' value='{"keyname":"weblead","fallback":"true","orgId":"00DdN00000rJlJF","ts":""}'>
 
