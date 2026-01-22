@@ -7,6 +7,19 @@
 
   <!-- Google Font -->
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <script src="https://www.google.com/recaptcha/api.js"></script>
+<script>
+ function timestamp() { 
+   var response = document.getElementById("g-recaptcha-response"); 
+   if (response == null || response.value.trim() == "") {
+     var elems = JSON.parse(document.getElementsByName("captcha_settings")[0].value);
+     elems["ts"] = JSON.stringify(new Date().getTime());
+     document.getElementsByName("captcha_settings")[0].value = JSON.stringify(elems); 
+   } 
+ } 
+ setInterval(timestamp, 500); 
+</script>
+
 
   <style>
     * { box-sizing: border-box; }
@@ -104,24 +117,25 @@
 
     <div class="logo">
       <img id="clinicLogo"
-           src="https://ideaclicks.in/assets/images/IdeaClickslogo.png"
+           src="https://innovation-enterprise-9998--c.vf.force.com/resource/1768803607000/Logo"
            alt="IdeaClicks Logo">
     </div>
-    <script src="https://www.google.com/recaptcha/api.js"></script>
-<script>
- function timestamp() { var response = document.getElementById("g-recaptcha-response"); if (response == null || response.value.trim() == "") {var elems = JSON.parse(document.getElementsByName("captcha_settings")[0].value);elems["ts"] = JSON.stringify(new Date().getTime());document.getElementsByName("captcha_settings")[0].value = JSON.stringify(elems); } } setInterval(timestamp, 500); 
-</script>
+
     <form action="https://webto.salesforce.com/servlet/servlet.WebToLead?encoding=UTF-8&orgId=00DdN00000rJlJF" method="POST">
 
-<input type=hidden name='captcha_settings' value='{"keyname":"weblead","fallback":"true","orgId":"00DdN00000rJlJF","ts":""}'>
+    <input type=hidden name='captcha_settings' value='{"keyname":"weblead","fallback":"true","orgId":"00DdN00000rJlJF","ts":""}'>
+<input type=hidden name="oid" value="00DdN00000rJlJF">
+<input type=hidden name="retURL" value="http://ideaclicks.in">
 
-      <input type="hidden" name="oid" value="00DdN00000rJlJF">
-      <input type="hidden" name="retURL" value="https://ideaclicks.in">
+      <div class="field-group">
+        <label for="salutation">Salutation</label>
+        <select id="salutation" name="salutation">…</select><br>
+      </div>
 
       <div class="two-col">
         <div class="field-group">
           <label for="first_name">First Name *</label>
-          <input id="first_name" name="first_name" type="text" maxlength="40" required>
+          <input id="first_name" name="first_name" type="text" maxlength="40" >
         </div>
 
         <div class="field-group">
@@ -132,13 +146,13 @@
 
       <div class="field-group">
         <label for="email">Email *</label>
-        <input id="email" name="email" type="text" maxlength="80" required>
+        <input id="email" name="email" type="text" maxlength="80" >
       </div>
 
       <div class="two-col">
         <div class="field-group">
           <label for="phone">Phone *</label>
-          <input id="phone" name="phone" type="text" maxlength="40" required>
+          <input id="phone" name="phone" type="text" maxlength="40" >
         </div>
 
         <div class="field-group">
@@ -149,12 +163,12 @@
 
       <div class="field-group">
         <label for="company">Company *</label>
-        <input id="company" name="company" type="text" maxlength="40" required>
+        <input id="company" name="company" type="text" maxlength="40">
       </div>
 
       <div class="field-group">
         <label for="00NdN00000LrF4s">Business Type *</label>
-        <input id="00NdN00000LrF4s" name="00NdN00000LrF4s" type="text" maxlength="100" required>
+        <input id="00NdN00000LrF4s" name="00NdN00000LrF4s" type="text" maxlength="100" >
       </div>
 
       <div class="field-group">
