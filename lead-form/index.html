@@ -1,0 +1,2434 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <meta
+        name="description"
+        content="Lead to Salesforce"
+    >
+
+    <title>Lead to Salesforce</title>
+
+
+    <style>
+
+        /* =====================================================
+           ROOT VARIABLES
+        ===================================================== */
+
+        :root {
+
+            --background: #070b10;
+
+            --card-bg: rgba(17, 25, 32, 0.90);
+
+            --input-bg: rgba(255, 255, 255, 0.045);
+
+            --input-hover: rgba(255, 255, 255, 0.065);
+
+            --border: rgba(255, 255, 255, 0.10);
+
+            --border-hover: rgba(84, 196, 216, 0.42);
+
+            --text: #f5f8fa;
+
+            --label: #dbe5e8;
+
+            --placeholder: #718087;
+
+            --cyan: #398fa1;
+
+            --cyan-light: #54c4d8;
+
+            --purple: #7567ff;
+
+            --purple-light: #958aff;
+
+            --error: #ff6868;
+
+        }
+
+
+        /* =====================================================
+           RESET
+        ===================================================== */
+
+        *,
+        *::before,
+        *::after {
+
+            box-sizing: border-box;
+
+            margin: 0;
+
+            padding: 0;
+
+        }
+
+
+        /* =====================================================
+           HTML
+        ===================================================== */
+
+        html {
+
+            scroll-behavior: smooth;
+
+        }
+
+
+        /* =====================================================
+           BODY
+        ===================================================== */
+
+        body {
+
+            min-height: 100vh;
+
+            padding: 35px 18px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            font-family:
+                Inter,
+                -apple-system,
+                BlinkMacSystemFont,
+                "Segoe UI",
+                Roboto,
+                Arial,
+                sans-serif;
+
+            color: var(--text);
+
+            background:
+
+                radial-gradient(
+                    circle at 5% 5%,
+                    rgba(57, 143, 161, 0.18),
+                    transparent 30%
+                ),
+
+                radial-gradient(
+                    circle at 95% 95%,
+                    rgba(117, 103, 255, 0.16),
+                    transparent 32%
+                ),
+
+                radial-gradient(
+                    circle at 50% 50%,
+                    rgba(57, 143, 161, 0.045),
+                    transparent 45%
+                ),
+
+                var(--background);
+
+            overflow-x: hidden;
+
+        }
+
+
+        /* =====================================================
+           BACKGROUND GLOW
+        ===================================================== */
+
+        body::before {
+
+            content: "";
+
+            position: fixed;
+
+            width: 430px;
+
+            height: 430px;
+
+            border-radius: 50%;
+
+            top: -200px;
+
+            right: -170px;
+
+            background:
+                rgba(117, 103, 255, 0.11);
+
+            filter:
+                blur(75px);
+
+            pointer-events: none;
+
+            animation:
+                glowMove 9s ease-in-out infinite;
+
+            z-index: 0;
+
+        }
+
+
+        body::after {
+
+            content: "";
+
+            position: fixed;
+
+            width: 390px;
+
+            height: 390px;
+
+            border-radius: 50%;
+
+            bottom: -200px;
+
+            left: -170px;
+
+            background:
+                rgba(57, 143, 161, 0.13);
+
+            filter:
+                blur(75px);
+
+            pointer-events: none;
+
+            animation:
+                glowMove 11s ease-in-out infinite reverse;
+
+            z-index: 0;
+
+        }
+
+
+        @keyframes glowMove {
+
+            0%,
+            100% {
+
+                transform:
+                    translate(0, 0)
+                    scale(1);
+
+            }
+
+            50% {
+
+                transform:
+                    translate(-30px, 25px)
+                    scale(1.12);
+
+            }
+
+        }
+
+
+        /* =====================================================
+           MAIN FORM CONTAINER
+        ===================================================== */
+
+        .form-container {
+
+            position: relative;
+
+            z-index: 2;
+
+            width: min(940px, 100%);
+
+            padding: 42px;
+
+            border-radius: 24px;
+
+            background:
+
+                linear-gradient(
+                    145deg,
+                    rgba(255, 255, 255, 0.075),
+                    rgba(255, 255, 255, 0.025)
+                );
+
+            border:
+                1px solid var(--border);
+
+            box-shadow:
+
+                0 35px 90px
+                rgba(0, 0, 0, 0.48),
+
+                inset 0 1px 0
+                rgba(255, 255, 255, 0.045);
+
+            backdrop-filter:
+                blur(24px);
+
+            -webkit-backdrop-filter:
+                blur(24px);
+
+            overflow: hidden;
+
+            animation:
+                formAppear 0.75s
+                cubic-bezier(.2,.8,.2,1)
+                both;
+
+        }
+
+
+        /* =====================================================
+           TOP LIGHT
+        ===================================================== */
+
+        .form-container::before {
+
+            content: "";
+
+            position: absolute;
+
+            top: 0;
+
+            left: 10%;
+
+            width: 80%;
+
+            height: 1px;
+
+            background:
+
+                linear-gradient(
+                    90deg,
+                    transparent,
+                    rgba(84, 196, 216, .8),
+                    rgba(117, 103, 255, .8),
+                    transparent
+                );
+
+            box-shadow:
+                0 0 18px
+                rgba(84,196,216,.25);
+
+        }
+
+
+        /* =====================================================
+           INNER GLOW
+        ===================================================== */
+
+        .form-container::after {
+
+            content: "";
+
+            position: absolute;
+
+            width: 300px;
+
+            height: 300px;
+
+            top: -190px;
+
+            left: -190px;
+
+            border-radius: 50%;
+
+            background:
+                rgba(57, 143, 161, .075);
+
+            filter:
+                blur(45px);
+
+            pointer-events: none;
+
+        }
+
+
+        @keyframes formAppear {
+
+            from {
+
+                opacity: 0;
+
+                transform:
+                    translateY(30px)
+                    scale(.98);
+
+            }
+
+            to {
+
+                opacity: 1;
+
+                transform:
+                    translateY(0)
+                    scale(1);
+
+            }
+
+        }
+
+
+        /* =====================================================
+           FORM
+        ===================================================== */
+
+        form {
+
+            position: relative;
+
+            z-index: 2;
+
+        }
+
+
+        /* =====================================================
+           HEADER
+        ===================================================== */
+
+        .form-header {
+
+            text-align: center;
+
+            margin-bottom: 34px;
+
+        }
+
+
+        .form-header h1 {
+
+            font-size:
+                clamp(27px, 4vw, 38px);
+
+            line-height: 1.2;
+
+            font-weight: 750;
+
+            letter-spacing: -0.9px;
+
+            background:
+
+                linear-gradient(
+                    100deg,
+                    #ffffff 10%,
+                    #54c4d8 48%,
+                    #8a7dff 90%
+                );
+
+            -webkit-background-clip: text;
+
+            background-clip: text;
+
+            -webkit-text-fill-color: transparent;
+
+            animation:
+                titleGlow 4s ease-in-out infinite alternate;
+
+        }
+
+
+        .form-header p {
+
+            margin-top: 11px;
+
+            color: #89979e;
+
+            font-size: 14px;
+
+            line-height: 1.6;
+
+        }
+
+
+        @keyframes titleGlow {
+
+            from {
+
+                filter:
+                    drop-shadow(
+                        0 0 4px
+                        rgba(84, 196, 216, .05)
+                    );
+
+            }
+
+            to {
+
+                filter:
+                    drop-shadow(
+                        0 0 15px
+                        rgba(84, 196, 216, .18)
+                    );
+
+            }
+
+        }
+
+
+        /* =====================================================
+           FORM GRID
+        ===================================================== */
+
+        .form-grid {
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(2, minmax(0, 1fr));
+
+            gap: 22px 20px;
+
+        }
+
+
+        /* =====================================================
+           FIELD
+        ===================================================== */
+
+        .field {
+
+            width: 100%;
+
+            position: relative;
+
+            animation:
+                fieldAppear .55s ease both;
+
+        }
+
+
+        .field.full {
+
+            grid-column:
+                1 / -1;
+
+        }
+
+
+        .field:nth-child(1)  { animation-delay: .05s; }
+        .field:nth-child(2)  { animation-delay: .10s; }
+        .field:nth-child(3)  { animation-delay: .15s; }
+        .field:nth-child(4)  { animation-delay: .20s; }
+        .field:nth-child(5)  { animation-delay: .25s; }
+        .field:nth-child(6)  { animation-delay: .30s; }
+        .field:nth-child(7)  { animation-delay: .35s; }
+        .field:nth-child(8)  { animation-delay: .40s; }
+        .field:nth-child(9)  { animation-delay: .45s; }
+        .field:nth-child(10) { animation-delay: .50s; }
+        .field:nth-child(11) { animation-delay: .55s; }
+        .field:nth-child(12) { animation-delay: .60s; }
+        .field:nth-child(13) { animation-delay: .65s; }
+        .field:nth-child(14) { animation-delay: .70s; }
+        .field:nth-child(15) { animation-delay: .75s; }
+
+
+        @keyframes fieldAppear {
+
+            from {
+
+                opacity: 0;
+
+                transform:
+                    translateY(10px);
+
+            }
+
+            to {
+
+                opacity: 1;
+
+                transform:
+                    translateY(0);
+
+            }
+
+        }
+
+
+        /* =====================================================
+           LABEL
+        ===================================================== */
+
+        .field label {
+
+            display: block;
+
+            margin-bottom: 8px;
+
+            color:
+                var(--label);
+
+            font-size: 13px;
+
+            font-weight: 600;
+
+            letter-spacing: .15px;
+
+        }
+
+
+        /* =====================================================
+           INPUT / SELECT / TEXTAREA
+        ===================================================== */
+
+        .field input,
+        .field select,
+        .field textarea {
+
+            width: 100%;
+
+            border:
+                1px solid
+                var(--border);
+
+            border-radius: 12px;
+
+            background:
+                var(--input-bg);
+
+            color:
+                var(--text);
+
+            font-family:
+                inherit;
+
+            font-size:
+                14px;
+
+            outline:
+                none;
+
+            transition:
+
+                border-color .25s ease,
+
+                background .25s ease,
+
+                box-shadow .25s ease,
+
+                transform .25s ease;
+
+        }
+
+
+        /* =====================================================
+           INPUT + SELECT
+        ===================================================== */
+
+        .field input,
+        .field select {
+
+            height:
+                52px;
+
+            padding:
+                0 15px;
+
+        }
+
+
+        /* =====================================================
+           TEXTAREA
+        ===================================================== */
+
+        .field textarea {
+
+            min-height:
+                130px;
+
+            padding:
+                14px 15px;
+
+            resize:
+                vertical;
+
+            line-height:
+                1.55;
+
+        }
+
+
+        /* =====================================================
+           PLACEHOLDER
+        ===================================================== */
+
+        .field input::placeholder,
+        .field textarea::placeholder {
+
+            color:
+                var(--placeholder);
+
+        }
+
+
+        /* =====================================================
+           SELECT
+        ===================================================== */
+
+        .field select {
+
+            cursor:
+                pointer;
+
+            appearance:
+                none;
+
+            -webkit-appearance:
+                none;
+
+            padding-right:
+                42px;
+
+        }
+
+
+        .field select option {
+
+            background:
+                #111b22;
+
+            color:
+                white;
+
+        }
+
+
+        /* =====================================================
+           SELECT ARROW
+        ===================================================== */
+
+        .select-field::after {
+
+            content:
+                "⌄";
+
+            position:
+                absolute;
+
+            right:
+                16px;
+
+            bottom:
+                12px;
+
+            color:
+                #54c4d8;
+
+            font-size:
+                18px;
+
+            font-weight:
+                600;
+
+            pointer-events:
+                none;
+
+            transition:
+                transform .25s ease;
+
+        }
+
+
+        .select-field:focus-within::after {
+
+            transform:
+                rotate(180deg);
+
+        }
+
+
+        /* =====================================================
+           HOVER
+        ===================================================== */
+
+        .field input:hover,
+        .field select:hover,
+        .field textarea:hover {
+
+            border-color:
+                var(--border-hover);
+
+            background:
+                var(--input-hover);
+
+        }
+
+
+        /* =====================================================
+           FOCUS
+        ===================================================== */
+
+        .field input:focus,
+        .field select:focus,
+        .field textarea:focus {
+
+            border-color:
+                var(--cyan-light);
+
+            background:
+                rgba(57, 143, 161, .07);
+
+            box-shadow:
+
+                0 0 0 3px
+                rgba(57, 143, 161, .10),
+
+                0 0 25px
+                rgba(57, 143, 161, .08);
+
+            transform:
+                translateY(-1px);
+
+        }
+
+
+        /* =====================================================
+           SOCIAL MEDIA FIELD
+        ===================================================== */
+
+        .social-field {
+
+            position:
+                relative;
+
+        }
+
+
+        /* =====================================================
+           SOCIAL LABEL
+        ===================================================== */
+
+        .social-label {
+
+            display:
+                flex !important;
+
+            align-items:
+                center;
+
+            gap:
+                9px;
+
+            color:
+                #e4edf0 !important;
+
+        }
+
+
+        /* =====================================================
+           SOCIAL ICON
+        ===================================================== */
+
+        .social-icon {
+
+            width:
+                25px;
+
+            height:
+                25px;
+
+            min-width:
+                25px;
+
+            display:
+                inline-flex;
+
+            align-items:
+                center;
+
+            justify-content:
+                center;
+
+            border-radius:
+                7px;
+
+            color:
+                white;
+
+            box-shadow:
+                0 5px 15px
+                rgba(0,0,0,.22);
+
+            transition:
+                transform .25s ease,
+                box-shadow .25s ease;
+
+        }
+
+
+        .social-icon svg {
+
+            width:
+                14px;
+
+            height:
+                14px;
+
+            fill:
+                currentColor;
+
+        }
+
+
+        /* =====================================================
+           FACEBOOK
+        ===================================================== */
+
+        .facebook-icon {
+
+            background:
+                linear-gradient(
+                    145deg,
+                    #1877f2,
+                    #0d5dcc
+                );
+
+        }
+
+
+        /* =====================================================
+           INSTAGRAM
+        ===================================================== */
+
+        .instagram-icon {
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #833ab4,
+                    #fd1d1d,
+                    #fcb045
+                );
+
+        }
+
+
+        .social-field:hover .social-icon {
+
+            transform:
+                translateY(-1px)
+                scale(1.06);
+
+            box-shadow:
+                0 7px 20px
+                rgba(0,0,0,.30);
+
+        }
+
+
+        /* =====================================================
+           SOCIAL INPUT
+        ===================================================== */
+
+        .social-field input {
+
+            padding-left:
+                15px;
+
+        }
+
+
+        /* =====================================================
+           SUBMIT FOOTER
+        ===================================================== */
+
+        .form-footer {
+
+            margin-top:
+                28px;
+
+        }
+
+
+        /* =====================================================
+           SUBMIT BUTTON
+        ===================================================== */
+
+        .submit-button {
+
+            position:
+                relative;
+
+            width:
+                100%;
+
+            height:
+                56px;
+
+            border:
+                0;
+
+            border-radius:
+                12px;
+
+            overflow:
+                hidden;
+
+            background:
+
+                linear-gradient(
+                    110deg,
+                    #398fa1,
+                    #48b5c7,
+                    #7567ff
+                );
+
+            background-size:
+                220% 100%;
+
+            color:
+                #ffffff;
+
+            font-family:
+                inherit;
+
+            font-size:
+                15px;
+
+            font-weight:
+                700;
+
+            letter-spacing:
+                .2px;
+
+            cursor:
+                pointer;
+
+            box-shadow:
+                0 12px 30px
+                rgba(57, 143, 161, .22);
+
+            transition:
+                transform .25s ease,
+                box-shadow .25s ease;
+
+        }
+
+
+        /* =====================================================
+           BUTTON SHINE
+        ===================================================== */
+
+        .submit-button::before {
+
+            content:
+                "";
+
+            position:
+                absolute;
+
+            top:
+                0;
+
+            left:
+                -100%;
+
+            width:
+                60%;
+
+            height:
+                100%;
+
+            background:
+
+                linear-gradient(
+                    90deg,
+                    transparent,
+                    rgba(255,255,255,.25),
+                    transparent
+                );
+
+            transform:
+                skewX(-20deg);
+
+            transition:
+                left .65s ease;
+
+        }
+
+
+        .submit-button:hover::before {
+
+            left:
+                130%;
+
+        }
+
+
+        .submit-button:hover {
+
+            transform:
+                translateY(-2px);
+
+            box-shadow:
+                0 18px 40px
+                rgba(57, 143, 161, .30);
+
+            animation:
+                buttonGradient 2s
+                linear infinite;
+
+        }
+
+
+        @keyframes buttonGradient {
+
+            0% {
+
+                background-position:
+                    0% 50%;
+
+            }
+
+            100% {
+
+                background-position:
+                    100% 50%;
+
+            }
+
+        }
+
+
+        .submit-button:active {
+
+            transform:
+                translateY(0);
+
+        }
+
+
+        .submit-button:disabled {
+
+            opacity:
+                .6;
+
+            cursor:
+                not-allowed;
+
+            animation:
+                none;
+
+        }
+
+
+        /* =====================================================
+           TABLET
+        ===================================================== */
+
+        @media (
+            min-width: 701px
+        )
+        and (
+            max-width: 900px
+        ) {
+
+            .form-container {
+
+                padding:
+                    34px;
+
+            }
+
+        }
+
+
+        /* =====================================================
+           MOBILE
+        ===================================================== */
+
+        @media (max-width: 700px) {
+
+            body {
+
+                padding:
+                    15px 9px;
+
+                align-items:
+                    flex-start;
+
+            }
+
+
+            .form-container {
+
+                width:
+                    100%;
+
+                padding:
+                    27px 18px;
+
+                border-radius:
+                    18px;
+
+            }
+
+
+            .form-header {
+
+                margin-bottom:
+                    26px;
+
+            }
+
+
+            .form-header h1 {
+
+                font-size:
+                    27px;
+
+            }
+
+
+            .form-header p {
+
+                font-size:
+                    13px;
+
+            }
+
+
+            .form-grid {
+
+                display:
+                    block;
+
+            }
+
+
+            .field {
+
+                margin-bottom:
+                    19px;
+
+            }
+
+
+            .field input,
+            .field select {
+
+                height:
+                    51px;
+
+                font-size:
+                    16px;
+
+            }
+
+
+            .field textarea {
+
+                font-size:
+                    16px;
+
+                min-height:
+                    125px;
+
+            }
+
+
+            .form-footer {
+
+                margin-top:
+                    5px;
+
+            }
+
+
+            .submit-button {
+
+                height:
+                    54px;
+
+            }
+
+        }
+
+
+        /* =====================================================
+           SMALL MOBILE
+        ===================================================== */
+
+        @media (max-width: 380px) {
+
+            .form-container {
+
+                padding:
+                    23px 14px;
+
+            }
+
+
+            .field label {
+
+                font-size:
+                    12px;
+
+            }
+
+
+            .social-icon {
+
+                width:
+                    23px;
+
+                height:
+                    23px;
+
+                min-width:
+                    23px;
+
+            }
+
+        }
+
+
+        /* =====================================================
+           REDUCED MOTION
+        ===================================================== */
+
+        @media (prefers-reduced-motion: reduce) {
+
+            *,
+            *::before,
+            *::after {
+
+                animation:
+                    none !important;
+
+                transition:
+                    none !important;
+
+                scroll-behavior:
+                    auto !important;
+
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <div class="form-container">
+
+
+        <form
+            id="leadForm"
+            action="https://webto.salesforce.com/servlet/servlet.WebToLead?encoding=UTF-8&orgId=00Df600000TQIF7"
+            method="POST"
+        >
+
+
+            <!-- =================================================
+                 SALESFORCE HIDDEN FIELDS
+            ================================================== -->
+
+            <input
+                type="hidden"
+                name="oid"
+                value="00Df600000TQIF7"
+            >
+
+            <input
+                type="hidden"
+                name="retURL"
+                value="https://www.google.com/"
+            >
+
+
+            <!-- =================================================
+                 HEADER
+            ================================================== -->
+
+            <div class="form-header">
+
+                <h1>
+                    Lead to Salesforce
+                </h1>
+
+                <p>
+                    Add a business, clinic, hospital or professional lead
+                    to Salesforce.
+                </p>
+
+            </div>
+
+
+            <!-- =================================================
+                 FORM GRID
+            ================================================== -->
+
+            <div class="form-grid">
+
+
+                <!-- FIRST NAME -->
+
+                <div class="field">
+
+                    <label for="first_name">
+                        First Name
+                    </label>
+
+                    <input
+                        id="first_name"
+                        name="first_name"
+                        type="text"
+                        maxlength="40"
+                        placeholder="Enter first name"
+                        autocomplete="given-name"
+                    >
+
+                </div>
+
+
+                <!-- LAST NAME -->
+
+                <div class="field">
+
+                    <label for="last_name">
+                        Last Name
+                    </label>
+
+                    <input
+                        id="last_name"
+                        name="last_name"
+                        type="text"
+                        maxlength="80"
+                        placeholder="Enter last name"
+                        autocomplete="family-name"
+                    >
+
+                </div>
+
+
+                <!-- COMPANY -->
+
+                <div class="field full">
+
+                    <label for="company">
+                        Company / Clinic / Hospital Name
+                    </label>
+
+                    <input
+                        id="company"
+                        name="company"
+                        type="text"
+                        maxlength="255"
+                        placeholder="Enter company, clinic or hospital name"
+                        autocomplete="organization"
+                    >
+
+                </div>
+
+
+                <!-- TITLE -->
+
+                <div class="field">
+
+                    <label for="title">
+                        Title / Designation
+                    </label>
+
+                    <input
+                        id="title"
+                        name="title"
+                        type="text"
+                        maxlength="80"
+                        placeholder="e.g. Dr., Owner, Director, Manager"
+                        autocomplete="organization-title"
+                    >
+
+                </div>
+
+
+                <!-- CATEGORY -->
+
+                <div class="field select-field">
+
+                    <label for="category">
+                        Category
+                    </label>
+
+                    <select
+                        id="category"
+                        name="category"
+                    >
+
+                        <option value="">
+                            Select category
+                        </option>
+
+                        <option value="Doctor">
+                            Doctor
+                        </option>
+
+                        <option value="Clinic">
+                            Clinic
+                        </option>
+
+                        <option value="Hospital">
+                            Hospital
+                        </option>
+
+                        <option value="Diagnostic Centre">
+                            Diagnostic Centre
+                        </option>
+
+                        <option value="Dental Clinic">
+                            Dental Clinic
+                        </option>
+
+                        <option value="IVF / Fertility Centre">
+                            IVF / Fertility Centre
+                        </option>
+
+                        <option value="Pharmacy">
+                            Pharmacy
+                        </option>
+
+                        <option value="Wellness Centre">
+                            Wellness Centre
+                        </option>
+
+                        <option value="Physiotherapy Centre">
+                            Physiotherapy Centre
+                        </option>
+
+                        <option value="Healthcare Organization">
+                            Healthcare Organization
+                        </option>
+
+                        <option value="Real Estate">
+                            Real Estate
+                        </option>
+
+                        <option value="Education">
+                            Education
+                        </option>
+
+                        <option value="IT & Software">
+                            IT & Software
+                        </option>
+
+                        <option value="Finance & Insurance">
+                            Finance & Insurance
+                        </option>
+
+                        <option value="Manufacturing">
+                            Manufacturing
+                        </option>
+
+                        <option value="Retail">
+                            Retail
+                        </option>
+
+                        <option value="E-commerce">
+                            E-commerce
+                        </option>
+
+                        <option value="Hospitality">
+                            Hospitality
+                        </option>
+
+                        <option value="Restaurant / Food">
+                            Restaurant / Food
+                        </option>
+
+                        <option value="Travel & Tourism">
+                            Travel & Tourism
+                        </option>
+
+                        <option value="Automobile">
+                            Automobile
+                        </option>
+
+                        <option value="Legal Services">
+                            Legal Services
+                        </option>
+
+                        <option value="Professional Services">
+                            Professional Services
+                        </option>
+
+                        <option value="Beauty & Salon">
+                            Beauty & Salon
+                        </option>
+
+                        <option value="Fitness / Gym">
+                            Fitness / Gym
+                        </option>
+
+                        <option value="NGO / Non-Profit">
+                            NGO / Non-Profit
+                        </option>
+
+                        <option value="Media & Entertainment">
+                            Media & Entertainment
+                        </option>
+
+                        <option value="Marketing & Advertising">
+                            Marketing & Advertising
+                        </option>
+
+                        <option value="Construction">
+                            Construction
+                        </option>
+
+                        <option value="Architecture & Interior Design">
+                            Architecture & Interior Design
+                        </option>
+
+                        <option value="Other Business">
+                            Other Business
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <!-- SPECIALIZATION -->
+
+                <div class="field select-field">
+
+                    <label for="specialization">
+                        Specialization
+                    </label>
+
+                    <select
+                        id="specialization"
+                        name="specialization"
+                    >
+
+                        <option value="">
+                            Select specialization
+                        </option>
+
+                        <option value="Gynaecologist">
+                            Gynaecologist
+                        </option>
+
+                        <option value="Obstetrician">
+                            Obstetrician
+                        </option>
+
+                        <option value="Gynaecologist & Obstetrician">
+                            Gynaecologist & Obstetrician
+                        </option>
+
+                        <option value="IVF Specialist">
+                            IVF Specialist
+                        </option>
+
+                        <option value="Fertility Specialist">
+                            Fertility Specialist
+                        </option>
+
+                        <option value="Infertility Specialist">
+                            Infertility Specialist
+                        </option>
+
+                        <option value="Orthopaedic">
+                            Orthopaedic
+                        </option>
+
+                        <option value="Orthopaedic Surgeon">
+                            Orthopaedic Surgeon
+                        </option>
+
+                        <option value="General Physician">
+                            General Physician
+                        </option>
+
+                        <option value="General Surgeon">
+                            General Surgeon
+                        </option>
+
+                        <option value="Cardiologist">
+                            Cardiologist
+                        </option>
+
+                        <option value="Neurologist">
+                            Neurologist
+                        </option>
+
+                        <option value="Neurosurgeon">
+                            Neurosurgeon
+                        </option>
+
+                        <option value="Dermatologist">
+                            Dermatologist
+                        </option>
+
+                        <option value="Cosmetologist">
+                            Cosmetologist
+                        </option>
+
+                        <option value="Plastic Surgeon">
+                            Plastic Surgeon
+                        </option>
+
+                        <option value="Psychiatrist">
+                            Psychiatrist
+                        </option>
+
+                        <option value="Psychologist">
+                            Psychologist
+                        </option>
+
+                        <option value="Physiotherapist">
+                            Physiotherapist
+                        </option>
+
+                        <option value="Dentist">
+                            Dentist
+                        </option>
+
+                        <option value="Orthodontist">
+                            Orthodontist
+                        </option>
+
+                        <option value="Oral & Maxillofacial Surgeon">
+                            Oral & Maxillofacial Surgeon
+                        </option>
+
+                        <option value="Ophthalmologist">
+                            Ophthalmologist
+                        </option>
+
+                        <option value="ENT Specialist">
+                            ENT Specialist
+                        </option>
+
+                        <option value="Pulmonologist">
+                            Pulmonologist
+                        </option>
+
+                        <option value="Gastroenterologist">
+                            Gastroenterologist
+                        </option>
+
+                        <option value="Nephrologist">
+                            Nephrologist
+                        </option>
+
+                        <option value="Urologist">
+                            Urologist
+                        </option>
+
+                        <option value="Endocrinologist">
+                            Endocrinologist
+                        </option>
+
+                        <option value="Oncologist">
+                            Oncologist
+                        </option>
+
+                        <option value="Rheumatologist">
+                            Rheumatologist
+                        </option>
+
+                        <option value="Diabetologist">
+                            Diabetologist
+                        </option>
+
+                        <option value="Pathologist">
+                            Pathologist
+                        </option>
+
+                        <option value="Radiologist">
+                            Radiologist
+                        </option>
+
+                        <option value="Ayurveda">
+                            Ayurveda
+                        </option>
+
+                        <option value="Homeopathy">
+                            Homeopathy
+                        </option>
+
+                        <option value="Other Doctor">
+                            Other Doctor
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <!-- PHONE -->
+
+                <div class="field">
+
+                    <label for="phone">
+                        Phone
+                    </label>
+
+                    <input
+                        id="phone"
+                        name="phone"
+                        type="tel"
+                        maxlength="40"
+                        placeholder="Enter phone number"
+                        autocomplete="tel"
+                    >
+
+                </div>
+
+
+                <!-- EMAIL -->
+
+                <div class="field">
+
+                    <label for="email">
+                        Email
+                    </label>
+
+                    <input
+                        id="email"
+                        name="email"
+                        type="email"
+                        maxlength="80"
+                        placeholder="Enter email address"
+                        autocomplete="email"
+                    >
+
+                </div>
+
+
+                <!-- CITY -->
+
+                <div class="field">
+
+                    <label for="city">
+                        City
+                    </label>
+
+                    <input
+                        id="city"
+                        name="city"
+                        type="text"
+                        maxlength="40"
+                        placeholder="Enter city"
+                        autocomplete="address-level2"
+                    >
+
+                </div>
+
+
+                <!-- STATE -->
+
+                <div class="field select-field">
+
+                    <label for="state_code">
+                        State / Province
+                    </label>
+
+                    <select
+                        id="state_code"
+                        name="state_code"
+                    >
+
+                        <option value="">
+                            Select state / province
+                        </option>
+
+                        <option value="MH">
+                            Maharashtra
+                        </option>
+
+                        <option value="KA">
+                            Karnataka
+                        </option>
+
+                        <option value="DL">
+                            Delhi
+                        </option>
+
+                        <option value="GJ">
+                            Gujarat
+                        </option>
+
+                        <option value="RJ">
+                            Rajasthan
+                        </option>
+
+                        <option value="TN">
+                            Tamil Nadu
+                        </option>
+
+                        <option value="TG">
+                            Telangana
+                        </option>
+
+                        <option value="KL">
+                            Kerala
+                        </option>
+
+                        <option value="UP">
+                            Uttar Pradesh
+                        </option>
+
+                        <option value="WB">
+                            West Bengal
+                        </option>
+
+                        <option value="MP">
+                            Madhya Pradesh
+                        </option>
+
+                        <option value="BR">
+                            Bihar
+                        </option>
+
+                        <option value="PB">
+                            Punjab
+                        </option>
+
+                        <option value="HR">
+                            Haryana
+                        </option>
+
+                        <option value="GA">
+                            Goa
+                        </option>
+
+                        <option value="AP">
+                            Andhra Pradesh
+                        </option>
+
+                        <option value="OD">
+                            Odisha
+                        </option>
+
+                        <option value="OTHER">
+                            Other
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <!-- COUNTRY -->
+
+                <div class="field select-field">
+
+                    <label for="country_code">
+                        Country
+                    </label>
+
+                    <select
+                        id="country_code"
+                        name="country_code"
+                    >
+
+                        <option value="">
+                            Select country
+                        </option>
+
+                        <option value="IN">
+                            India
+                        </option>
+
+                        <option value="US">
+                            United States
+                        </option>
+
+                        <option value="GB">
+                            United Kingdom
+                        </option>
+
+                        <option value="AE">
+                            United Arab Emirates
+                        </option>
+
+                        <option value="AU">
+                            Australia
+                        </option>
+
+                        <option value="CA">
+                            Canada
+                        </option>
+
+                        <option value="SG">
+                            Singapore
+                        </option>
+
+                        <option value="DE">
+                            Germany
+                        </option>
+
+                        <option value="FR">
+                            France
+                        </option>
+
+                        <option value="JP">
+                            Japan
+                        </option>
+
+                        <option value="OTHER">
+                            Other
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <!-- WEBSITE -->
+
+                <div class="field full">
+
+                    <label for="url">
+                        Website
+                    </label>
+
+                    <input
+                        id="url"
+                        name="url"
+                        type="url"
+                        maxlength="255"
+                        placeholder="https://yourwebsite.com"
+                        autocomplete="url"
+                    >
+
+                </div>
+
+
+                <!-- FACEBOOK -->
+
+                <div class="field social-field">
+
+                    <label
+                        for="facebook"
+                        class="social-label"
+                    >
+
+                        <span class="social-icon facebook-icon">
+
+                            <svg
+                                viewBox="0 0 24 24"
+                                aria-hidden="true"
+                            >
+                                <path
+                                    d="M13.5 22v-8h2.7l.4-3h-3.1V9.1c0-.9.3-1.6 1.7-1.6h1.8V4.8c-.3 0-1.4-.1-2.6-.1-2.6 0-4.4 1.6-4.4 4.5V11H7.2v3h2.8v8h3.5Z"
+                                />
+                            </svg>
+
+                        </span>
+
+                        Facebook
+
+                    </label>
+
+                    <input
+                        id="facebook"
+                        name="00Nf600000gJwMx"
+                        type="url"
+                        maxlength="255"
+                        placeholder="https://facebook.com/..."
+                    >
+
+                </div>
+
+
+                <!-- INSTAGRAM -->
+
+                <div class="field social-field">
+
+                    <label
+                        for="instagram"
+                        class="social-label"
+                    >
+
+                        <span class="social-icon instagram-icon">
+
+                            <svg
+                                viewBox="0 0 24 24"
+                                aria-hidden="true"
+                            >
+                                <path
+                                    d="M7.5 2h9A5.5 5.5 0 0 1 22 7.5v9a5.5 5.5 0 0 1-5.5 5.5h-9A5.5 5.5 0 0 1 2 16.5v-9A5.5 5.5 0 0 1 7.5 2Zm0 2A3.5 3.5 0 0 0 4 7.5v9A3.5 3.5 0 0 0 7.5 20h9a3.5 3.5 0 0 0 3.5-3.5v-9A3.5 3.5 0 0 0 16.5 4h-9ZM12 7a5 5 0 1 1 0 10 5 5 0 0 1 0-10Zm0 2a3 3 0 1 0 0 6 3 3 0 0 0 0-6Zm5.25-3.25a1.25 1.25 0 1 1 0 2.5 1.25 1.25 0 0 1 0-2.5Z"
+                                />
+                            </svg>
+
+                        </span>
+
+                        Instagram
+
+                    </label>
+
+                    <input
+                        id="instagram"
+                        name="00Nf600000gMdYn"
+                        type="url"
+                        maxlength="255"
+                        placeholder="https://instagram.com/..."
+                    >
+
+                </div>
+
+
+                <!-- DESCRIPTION -->
+
+                <div class="field full">
+
+                    <label for="description">
+                        Business Requirement / Description
+                    </label>
+
+                    <textarea
+                        id="description"
+                        name="description"
+                        placeholder="Enter business details, requirements, services needed or any additional information..."
+                    ></textarea>
+
+                </div>
+
+
+                <!-- LEAD SOURCE -->
+
+                <div class="field full select-field">
+
+                    <label for="lead_source">
+                        Lead Source
+                    </label>
+
+                    <select
+                        id="lead_source"
+                        name="lead_source"
+                        onchange="toggleOtherLeadSource()"
+                    >
+
+                        <option value="">
+                            Select lead source
+                        </option>
+
+                        <option value="Advertisement">
+                            Advertisement
+                        </option>
+
+                        <option value="Employee Referral">
+                            Employee Referral
+                        </option>
+
+                        <option value="External Referral">
+                            External Referral
+                        </option>
+
+                        <option value="Partner">
+                            Partner
+                        </option>
+
+                        <option value="Public Relations">
+                            Public Relations
+                        </option>
+
+                        <option value="Seminar - Internal">
+                            Seminar - Internal
+                        </option>
+
+                        <option value="Seminar - Partner">
+                            Seminar - Partner
+                        </option>
+
+                        <option value="Trade Show">
+                            Trade Show
+                        </option>
+
+                        <option value="Web">
+                            Web
+                        </option>
+
+                        <option value="Word of mouth">
+                            Word of mouth
+                        </option>
+
+                        <option value="Website">
+                            Website
+                        </option>
+
+                        <option value="LinkedIn">
+                            LinkedIn
+                        </option>
+
+                        <option value="Cold Call">
+                            Cold Call
+                        </option>
+
+                        <option value="Event">
+                            Event
+                        </option>
+
+                        <option value="WhatsApp">
+                            WhatsApp
+                        </option>
+
+                        <option value="Referral">
+                            Referral
+                        </option>
+
+                        <option value="Santosh Sir">
+                            Santosh Sir
+                        </option>
+
+                        <option value="Other">
+                            Other
+                        </option>
+
+                    </select>
+
+                </div>
+
+                <!-- OTHER LEAD SOURCE DESCRIPTION -->
+
+                <div class="field full" id="otherLeadSourceDiv" style="display: none;">
+
+                    <label for="00Nf600000nTugv">
+                        Other Lead Source Description
+                    </label>
+
+                    <input
+                        id="00Nf600000nTugv"
+                        name="00Nf600000nTugv"
+                        type="text"
+                        maxlength="255"
+                        placeholder="Please specify the lead source"
+                    >
+
+                </div>
+
+
+            </div>
+
+
+            <!-- =================================================
+                 SUBMIT
+            ================================================== -->
+
+            <div class="form-footer">
+
+                <button
+                    type="submit"
+                    class="submit-button"
+                    id="submitButton"
+                >
+
+                    Submit Lead →
+
+                </button>
+
+            </div>
+
+
+        </form>
+
+
+    </div>
+
+
+    <script>
+
+        /* =====================================================
+           OTHER LEAD SOURCE
+        ===================================================== */
+
+        function toggleOtherLeadSource() {
+
+            const leadSource = document.getElementById("lead_source");
+            const otherLeadSourceDiv = document.getElementById("otherLeadSourceDiv");
+            const otherLeadSourceInput = document.getElementById("00Nf600000nTugv");
+
+            if (leadSource.value === "Other") {
+                otherLeadSourceDiv.style.display = "block";
+                otherLeadSourceInput.required = true;
+            } else {
+                otherLeadSourceDiv.style.display = "none";
+                otherLeadSourceInput.required = false;
+                otherLeadSourceInput.value = "";
+            }
+        }
+
+
+        /* =====================================================
+           FORM SUBMISSION
+        ===================================================== */
+
+        document.addEventListener(
+            "DOMContentLoaded",
+            function () {
+
+                const form =
+                    document.getElementById(
+                        "leadForm"
+                    );
+
+
+                const submitButton =
+                    document.getElementById(
+                        "submitButton"
+                    );
+
+
+                /* =================================================
+                   OPTIONAL URL VALIDATION
+                ================================================= */
+
+                function validateOptionalURL(
+                    element,
+                    fieldName
+                ) {
+
+                    const value =
+                        element.value.trim();
+
+
+                    if (value === "") {
+
+                        return true;
+
+                    }
+
+
+                    try {
+
+                        const url =
+                            new URL(value);
+
+
+                        if (
+                            url.protocol !== "http:" &&
+                            url.protocol !== "https:"
+                        ) {
+
+                            throw new Error();
+
+                        }
+
+
+                        return true;
+
+                    }
+
+                    catch (error) {
+
+                        alert(
+                            "Please enter a valid " +
+                            fieldName +
+                            " URL."
+                        );
+
+                        element.focus();
+
+                        return false;
+
+                    }
+
+                }
+
+
+                /* =================================================
+                   SUBMIT EVENT
+                ================================================= */
+
+                form.addEventListener(
+                    "submit",
+                    function (event) {
+
+
+                        /* WEBSITE */
+
+                        const website =
+                            document.getElementById(
+                                "url"
+                            );
+
+
+                        if (
+                            !validateOptionalURL(
+                                website,
+                                "website"
+                            )
+                        ) {
+
+                            event.preventDefault();
+
+                            return;
+
+                        }
+
+
+                        /* FACEBOOK */
+
+                        const facebook =
+                            document.getElementById(
+                                "facebook"
+                            );
+
+
+                        if (
+                            !validateOptionalURL(
+                                facebook,
+                                "Facebook"
+                            )
+                        ) {
+
+                            event.preventDefault();
+
+                            return;
+
+                        }
+
+
+                        /* INSTAGRAM */
+
+                        const instagram =
+                            document.getElementById(
+                                "instagram"
+                            );
+
+
+                        if (
+                            !validateOptionalURL(
+                                instagram,
+                                "Instagram"
+                            )
+                        ) {
+
+                            event.preventDefault();
+
+                            return;
+
+                        }
+
+
+                        /* DISABLE BUTTON */
+
+                        submitButton.disabled =
+                            true;
+
+
+                        submitButton.textContent =
+                            "Submitting...";
+
+                    }
+                );
+
+            }
+        );
+
+    </script>
+
+
+</body>
+
+</html>
