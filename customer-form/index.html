@@ -1,0 +1,1151 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <meta
+        name="description"
+        content="Internal Salesforce Lead Creation Form"
+    >
+
+    <title>Add New Lead | Salesforce</title>
+
+
+    <style>
+
+        /* =========================================================
+           GLOBAL RESET
+        ========================================================= */
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+
+        html {
+            width: 100%;
+            min-height: 100%;
+        }
+
+
+        body {
+            width: 100%;
+            min-height: 100vh;
+
+            font-family:
+                Inter,
+                -apple-system,
+                BlinkMacSystemFont,
+                "Segoe UI",
+                Roboto,
+                Helvetica,
+                Arial,
+                sans-serif;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #f6f9fc 0%,
+                    #edf4ff 50%,
+                    #f8fafc 100%
+                );
+
+            color: #172033;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            padding: 30px 20px;
+        }
+
+
+        /* =========================================================
+           MAIN CONTAINER
+        ========================================================= */
+
+        .lead-container {
+            width: 100%;
+            max-width: 620px;
+            margin: auto;
+        }
+
+
+        /* =========================================================
+           CARD
+        ========================================================= */
+
+        .lead-card {
+            width: 100%;
+
+            background: #ffffff;
+
+            border: 1px solid #e5eaf1;
+
+            border-radius: 24px;
+
+            padding: 42px;
+
+            box-shadow:
+                0 24px 60px rgba(15, 23, 42, 0.09),
+                0 5px 18px rgba(15, 23, 42, 0.04);
+        }
+
+
+        /* =========================================================
+           TOP ACCENT
+        ========================================================= */
+
+        .top-accent {
+            width: 52px;
+            height: 4px;
+
+            border-radius: 10px;
+
+            background:
+                linear-gradient(
+                    90deg,
+                    #2563eb,
+                    #4f46e5
+                );
+
+            margin: 0 auto 20px;
+        }
+
+
+        /* =========================================================
+           HEADER
+        ========================================================= */
+
+        .lead-header {
+            text-align: center;
+
+            margin-bottom: 32px;
+        }
+
+
+        .lead-header h1 {
+            font-size: clamp(25px, 4vw, 31px);
+
+            font-weight: 750;
+
+            line-height: 1.25;
+
+            letter-spacing: -0.6px;
+
+            color: #111827;
+
+            margin-bottom: 9px;
+        }
+
+
+        .lead-header p {
+            max-width: 470px;
+
+            margin: 0 auto;
+
+            font-size: 14px;
+
+            line-height: 1.65;
+
+            color: #64748b;
+        }
+
+
+        /* =========================================================
+           FORM
+        ========================================================= */
+
+        .lead-form {
+            width: 100%;
+        }
+
+
+        /* =========================================================
+           FORM GROUP
+        ========================================================= */
+
+        .form-group {
+            width: 100%;
+
+            margin-bottom: 21px;
+        }
+
+
+        /* =========================================================
+           LABEL
+        ========================================================= */
+
+        .form-label {
+            display: block;
+
+            margin-bottom: 8px;
+
+            font-size: 14px;
+
+            font-weight: 600;
+
+            line-height: 1.4;
+
+            color: #334155;
+        }
+
+
+        /* =========================================================
+           INPUT
+        ========================================================= */
+
+        .input-wrapper {
+            position: relative;
+
+            width: 100%;
+        }
+
+
+        .form-input {
+            width: 100%;
+
+            height: 54px;
+
+            display: block;
+
+            padding: 0 16px;
+
+            border: 1.5px solid #d9e1eb;
+
+            border-radius: 11px;
+
+            outline: none;
+
+            background: #ffffff;
+
+            color: #111827;
+
+            font-family: inherit;
+
+            font-size: 15px;
+
+            line-height: 1.4;
+
+            transition:
+                border-color 0.2s ease,
+                box-shadow 0.2s ease,
+                background-color 0.2s ease,
+                transform 0.2s ease;
+        }
+
+
+        .form-input::placeholder {
+            color: #9aa5b5;
+
+            opacity: 1;
+        }
+
+
+        .form-input:hover {
+            border-color: #b9c4d3;
+        }
+
+
+        .form-input:focus {
+            border-color: #2563eb;
+
+            background: #ffffff;
+
+            box-shadow:
+                0 0 0 4px rgba(37, 99, 235, 0.10);
+
+            transform: translateY(-1px);
+        }
+
+
+        /* =========================================================
+           LOCATION HINT
+        ========================================================= */
+
+        .input-hint {
+            margin-top: 7px;
+
+            font-size: 12px;
+
+            line-height: 1.5;
+
+            color: #94a3b8;
+        }
+
+
+        /* =========================================================
+           BUTTON
+        ========================================================= */
+
+        .submit-button {
+            width: 100%;
+
+            height: 55px;
+
+            margin-top: 5px;
+
+            border: none;
+
+            border-radius: 11px;
+
+            outline: none;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #2563eb 0%,
+                    #1d4ed8 100%
+                );
+
+            color: #ffffff;
+
+            font-family: inherit;
+
+            font-size: 15px;
+
+            font-weight: 650;
+
+            letter-spacing: 0.1px;
+
+            cursor: pointer;
+
+            box-shadow:
+                0 9px 22px rgba(37, 99, 235, 0.20);
+
+            transition:
+                transform 0.2s ease,
+                box-shadow 0.2s ease,
+                opacity 0.2s ease;
+        }
+
+
+        .submit-button:hover {
+            transform: translateY(-2px);
+
+            box-shadow:
+                0 13px 30px rgba(37, 99, 235, 0.27);
+        }
+
+
+        .submit-button:active {
+            transform: translateY(0);
+
+            box-shadow:
+                0 7px 17px rgba(37, 99, 235, 0.20);
+        }
+
+
+        .submit-button:disabled {
+            opacity: 0.75;
+
+            cursor: not-allowed;
+
+            transform: none;
+
+            box-shadow: none;
+        }
+
+
+        /* =========================================================
+           FOOTER
+        ========================================================= */
+
+        .form-footer {
+            margin-top: 17px;
+
+            text-align: center;
+
+            font-size: 11.5px;
+
+            line-height: 1.5;
+
+            color: #94a3b8;
+        }
+
+
+        /* =========================================================
+           TABLET
+        ========================================================= */
+
+        @media (max-width: 768px) {
+
+            body {
+                padding: 24px 16px;
+            }
+
+
+            .lead-container {
+                max-width: 580px;
+            }
+
+
+            .lead-card {
+                padding: 34px 30px;
+
+                border-radius: 21px;
+            }
+
+
+            .lead-header {
+                margin-bottom: 28px;
+            }
+
+        }
+
+
+        /* =========================================================
+           MOBILE
+        ========================================================= */
+
+        @media (max-width: 600px) {
+
+            body {
+                min-height: 100vh;
+
+                padding: 16px 12px;
+
+                align-items: flex-start;
+            }
+
+
+            .lead-container {
+                margin-top: 8px;
+            }
+
+
+            .lead-card {
+                padding: 29px 20px;
+
+                border-radius: 18px;
+
+                box-shadow:
+                    0 16px 38px rgba(15, 23, 42, 0.08);
+            }
+
+
+            .top-accent {
+                width: 45px;
+
+                height: 3px;
+
+                margin-bottom: 17px;
+            }
+
+
+            .lead-header {
+                margin-bottom: 25px;
+            }
+
+
+            .lead-header h1 {
+                font-size: 25px;
+
+                letter-spacing: -0.4px;
+            }
+
+
+            .lead-header p {
+                font-size: 13px;
+
+                line-height: 1.6;
+            }
+
+
+            .form-group {
+                margin-bottom: 18px;
+            }
+
+
+            .form-label {
+                font-size: 13.5px;
+            }
+
+
+            .form-input {
+                height: 51px;
+
+                padding: 0 14px;
+
+                border-radius: 10px;
+
+                font-size: 14px;
+            }
+
+
+            .submit-button {
+                height: 52px;
+
+                border-radius: 10px;
+
+                font-size: 14.5px;
+            }
+
+        }
+
+
+        /* =========================================================
+           SMALL MOBILE
+        ========================================================= */
+
+        @media (max-width: 400px) {
+
+            body {
+                padding: 12px 10px;
+            }
+
+
+            .lead-container {
+                margin-top: 4px;
+            }
+
+
+            .lead-card {
+                padding: 25px 16px;
+
+                border-radius: 16px;
+            }
+
+
+            .lead-header h1 {
+                font-size: 23px;
+            }
+
+
+            .lead-header p {
+                font-size: 12.5px;
+            }
+
+
+            .form-input {
+                height: 49px;
+
+                font-size: 13.5px;
+            }
+
+
+            .submit-button {
+                height: 50px;
+            }
+
+        }
+
+
+        /* =========================================================
+           VERY SMALL DEVICES
+        ========================================================= */
+
+        @media (max-width: 320px) {
+
+            .lead-card {
+                padding: 21px 13px;
+            }
+
+
+            .lead-header h1 {
+                font-size: 21px;
+            }
+
+
+            .form-input {
+                font-size: 13px;
+            }
+
+
+            .submit-button {
+                font-size: 14px;
+            }
+
+        }
+
+
+        /* =========================================================
+           ACCESSIBILITY
+        ========================================================= */
+
+        @media (prefers-reduced-motion: reduce) {
+
+            .form-input,
+            .submit-button {
+                transition: none;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <main class="lead-container">
+
+        <section class="lead-card">
+
+
+            <!-- =====================================================
+                 ACCENT
+            ====================================================== -->
+
+            <div class="top-accent"></div>
+
+
+            <!-- =====================================================
+                 HEADER
+            ====================================================== -->
+
+            <header class="lead-header">
+
+                <h1>
+                    Add New Lead
+                </h1>
+
+                <p>
+                    Enter the lead details available to you.
+                    You can add or update the information later in Salesforce.
+                </p>
+
+            </header>
+
+
+            <!-- =====================================================
+                 SALESFORCE WEB-TO-LEAD FORM
+            ====================================================== -->
+
+            <form
+                class="lead-form"
+                id="salesforceLeadForm"
+                action="https://webto.salesforce.com/servlet/servlet.WebToLead?encoding=UTF-8&orgId=00Df600000TQIF7"
+                method="POST"
+                onsubmit="return prepareSalesforceData();"
+            >
+
+
+                <!-- =================================================
+                     SALESFORCE SYSTEM FIELDS
+                ================================================== -->
+
+                <input
+                    type="hidden"
+                    name="oid"
+                    value="00Df600000TQIF7"
+                >
+
+
+                <!--
+                    Change this to your own success/thank-you page
+                    if required.
+                -->
+
+                <input
+                    type="hidden"
+                    name="retURL"
+                    value="http://google.com"
+                >
+
+
+
+                <!-- =================================================
+                     HIDDEN SALESFORCE FIELDS
+                ================================================== -->
+
+
+                <!-- First Name -->
+
+                <input
+                    type="hidden"
+                    id="first_name"
+                    name="first_name"
+                    value=""
+                >
+
+
+                <!-- Last Name -->
+
+                <input
+                    type="hidden"
+                    id="last_name"
+                    name="last_name"
+                    value=""
+                >
+
+
+                <!-- City -->
+
+                <input
+                    type="hidden"
+                    id="city"
+                    name="city"
+                    value=""
+                >
+
+
+                <!-- ZIP / Postal Code -->
+
+                <input
+                    type="hidden"
+                    id="postal_code"
+                    name="zip"
+                    value=""
+                >
+
+
+
+                <!-- =================================================
+                     1. NAME
+                ================================================== -->
+
+                <div class="form-group">
+
+                    <label
+                        class="form-label"
+                        for="full_name"
+                    >
+                        Name
+                    </label>
+
+
+                    <div class="input-wrapper">
+
+                        <input
+                            class="form-input"
+                            type="text"
+                            id="full_name"
+                            name="full_name"
+                            placeholder="Enter lead name"
+                            autocomplete="name"
+                        >
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- =================================================
+                     2. EMAIL
+                ================================================== -->
+
+                <div class="form-group">
+
+                    <label
+                        class="form-label"
+                        for="email"
+                    >
+                        Email
+                    </label>
+
+
+                    <div class="input-wrapper">
+
+                        <input
+                            class="form-input"
+                            type="email"
+                            id="email"
+                            name="email"
+                            placeholder="Enter email address"
+                            autocomplete="email"
+                        >
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- =================================================
+                     3. PHONE / WHATSAPP
+                ================================================== -->
+
+                <div class="form-group">
+
+                    <label
+                        class="form-label"
+                        for="phone"
+                    >
+                        Phone / WhatsApp Number
+                    </label>
+
+
+                    <div class="input-wrapper">
+
+                        <input
+                            class="form-input"
+                            type="tel"
+                            id="phone"
+                            name="phone"
+                            placeholder="Enter mobile number"
+                            maxlength="10"
+                            inputmode="numeric"
+                            autocomplete="tel"
+                        >
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- =================================================
+                     4. LOCATION / PINCODE
+                ================================================== -->
+
+                <div class="form-group">
+
+                    <label
+                        class="form-label"
+                        for="location"
+                    >
+                        Location / Pincode
+                    </label>
+
+
+                    <div class="input-wrapper">
+
+                        <input
+                            class="form-input"
+                            type="text"
+                            id="location"
+                            name="location"
+                            placeholder="e.g. Pune, 411038 or Kothrud, Pune - 411038"
+                            autocomplete="address-level2"
+                        >
+
+                    </div>
+
+
+                    <div class="input-hint">
+                        Enter city, pincode, or both.
+                    </div>
+
+                </div>
+
+
+
+                <!-- =================================================
+                     SUBMIT BUTTON
+                ================================================== -->
+
+                <button
+                    type="submit"
+                    class="submit-button"
+                    id="submitBtn"
+                >
+                    Add Lead
+                </button>
+
+
+                <!-- =================================================
+                     FOOTER
+                ================================================== -->
+
+                <div class="form-footer">
+                    Lead information will be added to Salesforce.
+                </div>
+
+
+            </form>
+
+        </section>
+
+    </main>
+
+
+
+    <script>
+
+
+        /* =========================================================
+           PHONE INPUT
+           Allow numbers only
+        ========================================================= */
+
+        const phoneInput =
+            document.getElementById("phone");
+
+
+        phoneInput.addEventListener(
+            "input",
+            function () {
+
+                this.value =
+                    this.value.replace(/\D/g, "");
+
+
+                if (this.value.length > 10) {
+
+                    this.value =
+                        this.value.substring(0, 10);
+
+                }
+
+            }
+        );
+
+
+
+        /* =========================================================
+           PREPARE SALESFORCE DATA
+        ========================================================= */
+
+        function prepareSalesforceData() {
+
+
+            /* =====================================================
+               GET FORM VALUES
+            ===================================================== */
+
+            const fullName =
+                document
+                    .getElementById("full_name")
+                    .value
+                    .trim();
+
+
+            const locationValue =
+                document
+                    .getElementById("location")
+                    .value
+                    .trim();
+
+
+
+            /* =====================================================
+               NAME → FIRST NAME + LAST NAME
+            ===================================================== */
+
+            if (fullName !== "") {
+
+
+                const nameParts =
+                    fullName.split(/\s+/);
+
+
+                if (nameParts.length === 1) {
+
+
+                    document
+                        .getElementById("first_name")
+                        .value =
+                        nameParts[0];
+
+
+                    document
+                        .getElementById("last_name")
+                        .value =
+                        "";
+
+
+                } else {
+
+
+                    document
+                        .getElementById("first_name")
+                        .value =
+                        nameParts[0];
+
+
+                    document
+                        .getElementById("last_name")
+                        .value =
+                        nameParts
+                            .slice(1)
+                            .join(" ");
+
+                }
+
+
+            } else {
+
+
+                document
+                    .getElementById("first_name")
+                    .value =
+                    "";
+
+
+                document
+                    .getElementById("last_name")
+                    .value =
+                    "";
+
+            }
+
+
+
+            /* =====================================================
+               LOCATION → CITY + ZIP
+            ===================================================== */
+
+
+            if (locationValue !== "") {
+
+
+                /*
+                    Detect Indian 6-digit pincode.
+
+                    Examples:
+
+                    Pune
+                    → City = Pune
+                    → ZIP = blank
+
+
+                    411038
+                    → City = blank
+                    → ZIP = 411038
+
+
+                    Kothrud, Pune - 411038
+                    → City = Kothrud Pune
+                    → ZIP = 411038
+                */
+
+
+                const pinPattern =
+                    /\b[1-9][0-9]{5}\b/;
+
+
+                const pinMatch =
+                    locationValue.match(pinPattern);
+
+
+
+                if (pinMatch) {
+
+
+                    /* ---------------------------------------------
+                       Extract Pincode
+                    --------------------------------------------- */
+
+                    const pincode =
+                        pinMatch[0];
+
+
+                    /* ---------------------------------------------
+                       Remove Pincode from Location
+                    --------------------------------------------- */
+
+                    let cityValue =
+                        locationValue
+                            .replace(pinPattern, "")
+                            .trim();
+
+
+                    /* ---------------------------------------------
+                       Clean Remaining Separators
+                    --------------------------------------------- */
+
+                    cityValue =
+                        cityValue
+                            .replace(/[-,|]+/g, " ")
+                            .replace(/\s+/g, " ")
+                            .trim();
+
+
+                    /* ---------------------------------------------
+                       Salesforce Mapping
+                    --------------------------------------------- */
+
+                    document
+                        .getElementById("city")
+                        .value =
+                        cityValue;
+
+
+                    document
+                        .getElementById("postal_code")
+                        .value =
+                        pincode;
+
+
+
+                } else {
+
+
+                    /*
+                        No pincode detected.
+
+                        Store the entered location
+                        in Salesforce City.
+                    */
+
+
+                    document
+                        .getElementById("city")
+                        .value =
+                        locationValue;
+
+
+                    document
+                        .getElementById("postal_code")
+                        .value =
+                        "";
+
+                }
+
+
+
+            } else {
+
+
+                /*
+                    Location field is empty.
+                */
+
+
+                document
+                    .getElementById("city")
+                    .value =
+                    "";
+
+
+                document
+                    .getElementById("postal_code")
+                    .value =
+                    "";
+
+            }
+
+
+
+            /* =====================================================
+               DISABLE BUTTON TO PREVENT DOUBLE SUBMISSION
+            ===================================================== */
+
+            const submitButton =
+                document.getElementById("submitBtn");
+
+
+            submitButton.disabled = true;
+
+
+            submitButton.innerText =
+                "Adding Lead...";
+
+
+            /* =====================================================
+               SUBMIT TO SALESFORCE
+            ===================================================== */
+
+            return true;
+
+        }
+
+    </script>
+
+
+</body>
+
+</html>
